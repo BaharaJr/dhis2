@@ -1,0 +1,31 @@
+name: DHIS2 Docker Image
+
+on:
+  pull_request:
+    branches: [2.25,2.26,2.27,2.28,2.29,2.30]
+  push:
+    branches: [2.25,2.26,2.27,2.28,2.29,2.30]
+
+jobs:
+  deploy-2-30:
+    if: '2.30' == ${GITHUB_REF##*/}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Repo
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Set up Docker Environment 
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push 🚀
+        run:  echo ${GITHUB_REF##*/}
+        id: docker_build
+        run: cd 2.30
+        run: sh build.sh

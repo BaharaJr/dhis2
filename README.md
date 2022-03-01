@@ -1,8 +1,13 @@
 # Legacy DHIS2 Core images
 
  The images are built from official war files by [DHIS2](https://dhis2.org/) for legacy versions that aren't available in the official [DHIS2 core](https://hub.docker.com/r/dhis2/core) docker images
+ ## Available versions
 
-
+    * 2.25
+    * 2.27
+    * 2.28
+    * 2.29
+    * 2.30
 ## How to setup
 
  The images require environmental variables
